@@ -134,6 +134,7 @@ Create `public/palettes/<id>.json`:
 {
   "id": "my_palette",
   "name": "My Palette",
+  "description": "Optional notes about palette origin or intent",
   "created": "2025-01-15",
   "tags": null,
   "colors": [

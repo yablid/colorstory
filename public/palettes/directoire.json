@@ -1,0 +1,25 @@
+{
+  "id": "directoire",
+  "name": "directoire",
+  "description": "Directoire period in France following 18 c. Rococo / Neoclassical styles.",
+  "created": "2025-12-03",
+  "tags": null,
+  "colors": [
+    { "name": "directoire blue", "rgb": [0, 97, 163], "oklch": [0.481, 0.13, 248] },
+    { "name": "prussian blue", "rgb": [0, 33, 57], "oklch": [0.239, 0.06, 245] },
+    { "name": "ink black", "rgb": [0, 19, 32], "oklch": [0.177, 0.039, 238] },
+    { "name": "icy blue", "rgb": [161, 217, 255], "oklch": [0.86, 0.078, 239] },
+    { "name": "Pompeiian Red", "rgb": [160, 45, 54], "oklch": [0.477, 0.15, 21] },
+    { "name": "royal plum", "rgb": [134, 39, 117], "oklch": [0.448, 0.157, 336] },
+    { "name": "sea green", "rgb": [163, 216, 157], "oklch": [0.83, 0.098, 142] },
+    { "name": "Ash Grey", "rgb": [180, 196, 185], "oklch": [0.805, 0.023, 156] },
+    { "name": "pearl beige", "rgb": [225, 209, 175], "oklch": [0.865, 0.049, 86] },
+    { "name": "ivory", "rgb": [255, 255, 227], "oklch": [0.993, 0.036, 107] },
+    { "name": "palm leaf", "rgb": [118, 143, 98], "oklch": [0.619, 0.071, 132] },
+    { "name": "white", "rgb": [215, 214, 220], "oklch": [0.879, 0.008, 294] },
+    { "name": "Rosy Granite", "rgb": [146, 140, 142], "oklch": [0.646, 0.008, 355] },
+    { "name": "evergreen", "rgb": [23, 48, 28], "oklch": [0.282, 0.048, 149] },
+    { "name": "black", "rgb": [2, 1, 0], "oklch": [0.071, 0.015, 82] },
+    { "name": "taupe", "rgb": [176, 158, 153], "oklch": [0.713, 0.022, 36] }
+  ]
+}

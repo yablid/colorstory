@@ -1,6 +1,7 @@
 {
-  "id": "gpt_color_story_2027",
-  "name": "gpt_color_story_2027",
+  "id": "colorstory2027",
+  "name": "Color Story 2027",
+  "description": "Asked chatgpt to tell me a 2027 color story.",
   "created": "2025-12-03",
   "tags": null,
   "colors": [

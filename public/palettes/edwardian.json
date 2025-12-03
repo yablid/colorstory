@@ -1,6 +1,7 @@
 {
   "id": "edwardian",
   "name": "Edwardian",
+  "description": "Defined from paint colors popular during the Edwardian era (1901-1910).",
   "created": "2025-12-03",
   "tags": null,
   "colors": [

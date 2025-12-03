@@ -1,4 +1,12 @@
 {
   "sort": "manual",
-  "palettes": ["french_interior_2025", "edwardian", "gpt_color_story_2027"]
+  "palettes": [
+    "french_interior_2025",
+    "edwardian",
+    "color_story_2027",
+    "sw_arts_crafts",
+    "belle_epoque",
+    "aladdin1916",
+    "directoire"
+  ]
 }

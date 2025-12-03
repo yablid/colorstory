@@ -1,0 +1,26 @@
+{
+  "id": "belle_epoque",
+  "name": "Belle Epoque",
+  "description": "Belle Epoque color palette inspired by early 20th-century design in France",
+  "created": "2025-12-03",
+  "tags": null,
+  "colors": [
+    { "name": "Powder Petal", "rgb": [246, 229, 221], "oklch": [0.933, 0.022, 47] },
+    { "name": "Pearl Beige", "rgb": [250, 233, 189], "oklch": [0.937, 0.06, 89] },
+    { "name": "Porcelain", "rgb": [249, 251, 248], "oklch": [0.986, 0.004, 135] },
+    { "name": "Cotton Rose", "rgb": [230, 189, 183], "oklch": [0.833, 0.048, 28] },
+    { "name": "Eggshell", "rgb": [233, 226, 208], "oklch": [0.913, 0.025, 89] },
+    { "name": "Olive Wood", "rgb": [122, 106, 81], "oklch": [0.533, 0.042, 79] },
+    { "name": "Plum", "rgb": [91, 48, 67], "oklch": [0.371, 0.067, 353] },
+    { "name": "Tea Rose", "rgb": [217, 163, 160], "oklch": [0.765, 0.065, 22] },
+    { "name": "Palm Leaf", "rgb": [127, 134, 76], "oklch": [0.6, 0.081, 114] },
+    { "name": "Ochre", "rgb": [201, 113, 18], "oklch": [0.634, 0.145, 59] },
+    { "name": "Mahogany Red", "rgb": [174, 25, 23], "oklch": [0.482, 0.183, 28] },
+    { "name": "black", "rgb": [0, 0, 0], "oklch": [0, 0, 0] },
+    { "name": "Soft Peach", "rgb": [240, 220, 167], "oklch": [0.898, 0.072, 90] },
+    { "name": "Harvest Gold", "rgb": [201, 147, 41], "oklch": [0.698, 0.132, 79] },
+    { "name": "pitch black", "rgb": [25, 19, 8], "oklch": [0.191, 0.023, 82] },
+    { "name": "Slate Grey", "rgb": [107, 129, 140], "oklch": [0.59, 0.031, 230] },
+    { "name": "Taupe Grey", "rgb": [86, 78, 88], "oklch": [0.435, 0.019, 319] }
+  ]
+}
