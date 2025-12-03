@@ -1,0 +1,29 @@
+{
+  "id": "edwardian",
+  "name": "Edwardian",
+  "created": "2025-12-03",
+  "tags": null,
+  "colors": [
+    { "name": "Lobster Pink", "rgb": [197, 92, 106], "oklch": [0.607, 0.134, 14] },
+    { "name": "Fern", "rgb": [91, 121, 69], "oklch": [0.539, 0.084, 133] },
+    { "name": "Slate Grey", "rgb": [118, 140, 163], "oklch": [0.631, 0.043, 250] },
+    { "name": "space indigo", "rgb": [36, 39, 72], "oklch": [0.288, 0.06, 278] },
+    { "name": "red ochre", "rgb": [204, 66, 30], "oklch": [0.572, 0.181, 35] },
+    { "name": "dusty mauve", "rgb": [163, 122, 136], "oklch": [0.624, 0.054, 356] },
+    { "name": "Reseda Green", "rgb": [108, 124, 89], "oklch": [0.563, 0.055, 128] },
+    { "name": "myrtle green", "rgb": [33, 66, 30], "oklch": [0.344, 0.072, 142] },
+    { "name": "champagne", "rgb": [245, 234, 187], "oklch": [0.934, 0.062, 96] },
+    { "name": "plum", "rgb": [48, 51, 58], "oklch": [0.321, 0.013, 267] },
+    { "name": "royal blue", "rgb": [28, 29, 44], "oklch": [0.237, 0.029, 281] },
+    { "name": "wine", "rgb": [64, 18, 21], "oklch": [0.26, 0.072, 20] },
+    { "name": "pearl grey", "rgb": [226, 227, 222], "oklch": [0.914, 0.007, 116] },
+    { "name": "tan", "rgb": [226, 168, 98], "oklch": [0.772, 0.111, 70] },
+    { "name": "Light Grey", "rgb": [203, 196, 186], "oklch": [0.823, 0.016, 77] },
+    { "name": "grey", "rgb": [81, 83, 78], "oklch": [0.439, 0.008, 125] },
+    { "name": "brown", "rgb": [84, 41, 29], "oklch": [0.336, 0.067, 36] },
+    { "name": "pink", "rgb": [235, 179, 182], "oklch": [0.819, 0.065, 15] },
+    { "name": "russet tan", "rgb": [192, 139, 105], "oklch": [0.681, 0.08, 54] },
+    { "name": "slate grey", "rgb": [81, 77, 74], "oklch": [0.423, 0.007, 59] },
+    { "name": "Copenhagen Blue", "rgb": [87, 113, 140], "oklch": [0.539, 0.052, 250] }
+  ]
+}

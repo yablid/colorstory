@@ -1,0 +1,24 @@
+{
+  "id": "french_interior_2025",
+  "name": "French Interior 2025",
+  "created": "2025-12-02",
+  "tags": null,
+  "colors": [
+    { "name": "graphite", "rgb": [46, 46, 44], "oklch": [0.3, 0.004, 107] },
+    { "name": "terracotta", "rgb": [172, 84, 64], "oklch": [0.55, 0.12, 34] },
+    { "name": "provence shutters", "rgb": [174, 200, 226], "oklch": [0.822, 0.046, 248] },
+    { "name": "french blue", "rgb": [0, 114, 187], "oklch": [0.538, 0.142, 247] },
+    { "name": "ink black", "rgb": [0, 10, 16], "oklch": [0.135, 0.026, 226] },
+    { "name": "deep space blue", "rgb": [0, 30, 49], "oklch": [0.224, 0.052, 240] },
+    { "name": "creamy ivory", "rgb": [242, 239, 230], "oklch": [0.952, 0.012, 92] },
+    { "name": "muted gold", "rgb": [239, 215, 128], "oklch": [0.881, 0.111, 94] },
+    { "name": "old gold", "rgb": [210, 180, 80], "oklch": [0.777, 0.124, 93] },
+    { "name": "dusty olive", "rgb": [148, 154, 108], "oklch": [0.67, 0.064, 114] },
+    { "name": "olive green", "rgb": [98, 107, 47], "oklch": [0.506, 0.084, 117] },
+    { "name": "taupe", "rgb": [84, 70, 58], "oklch": [0.405, 0.027, 63] },
+    { "name": "alabaster", "rgb": [228, 228, 227], "oklch": [0.919, 0.001, 106] },
+    { "name": "silver", "rgb": [201, 200, 199], "oklch": [0.833, 0.002, 68] },
+    { "name": "grey olive", "rgb": [146, 145, 142], "oklch": [0.657, 0.005, 91] },
+    { "name": "grey", "rgb": [119, 118, 114], "oklch": [0.565, 0.006, 95] }
+  ]
+}

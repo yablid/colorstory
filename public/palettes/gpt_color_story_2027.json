@@ -1,0 +1,31 @@
+{
+  "id": "gpt_color_story_2027",
+  "name": "gpt_color_story_2027",
+  "created": "2025-12-03",
+  "tags": null,
+  "colors": [
+    { "name": "mushroom beige", "rgb": [205, 187, 165], "oklch": [0.801, 0.036, 73] },
+    { "name": "warm stone", "rgb": [139, 127, 111], "oklch": [0.603, 0.028, 75] },
+    { "name": "toffee brown", "rgb": [156, 102, 68], "oklch": [0.561, 0.085, 52] },
+    { "name": "mauve bark", "rgb": [122, 90, 86], "oklch": [0.5, 0.043, 27] },
+    { "name": "dusty mauve", "rgb": [179, 69, 69], "oklch": [0.54, 0.144, 23] },
+    { "name": "dark teal", "rgb": [8, 79, 85], "oklch": [0.391, 0.064, 204] },
+    { "name": "inky teal", "rgb": [6, 34, 38], "oklch": [0.233, 0.034, 208] },
+    { "name": "cinnamon wood", "rgb": [163, 92, 60], "oklch": [0.55, 0.104, 44] },
+    { "name": "reddish brown", "rgb": [151, 72, 46], "oklch": [0.497, 0.113, 39] },
+    { "name": "mediterranean fig", "rgb": [122, 94, 131], "oklch": [0.524, 0.066, 318] },
+    { "name": "dried fig", "rgb": [85, 48, 76], "oklch": [0.366, 0.068, 336] },
+    { "name": "sage green", "rgb": [108, 174, 117], "oklch": [0.691, 0.107, 148] },
+    { "name": "dry sage", "rgb": [205, 198, 165], "oklch": [0.824, 0.045, 97] },
+    { "name": "beige", "rgb": [212, 223, 199], "oklch": [0.889, 0.034, 127] },
+    { "name": "cornflower blue", "rgb": [118, 146, 255], "oklch": [0.689, 0.163, 271] },
+    { "name": "platinum", "rgb": [236, 240, 241], "oklch": [0.952, 0.004, 214] },
+    { "name": "sunflower gold", "rgb": [250, 188, 60], "oklch": [0.831, 0.153, 81] },
+    { "name": "bright fern", "rgb": [41, 191, 18], "oklch": [0.702, 0.229, 142] },
+    { "name": "tropical teal", "rgb": [72, 169, 166], "oklch": [0.677, 0.091, 192] },
+    { "name": "dust grey", "rgb": [228, 223, 218], "oklch": [0.906, 0.009, 68] },
+    { "name": "midnight violet", "rgb": [13, 2, 33], "oklch": [0.142, 0.066, 296] },
+    { "name": "grey olive", "rgb": [148, 149, 139], "oklch": [0.666, 0.014, 111] },
+    { "name": "black", "rgb": [0, 0, 0], "oklch": [0, 0, 0] }
+  ]
+}
