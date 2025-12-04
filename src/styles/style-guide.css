@@ -17,6 +17,29 @@ body {
   padding-right: 200px;
 }
 
+/* Layout modes */
+.sg-main[data-layout="side-by-side"] {
+  max-width: none;
+  padding-left: 190px;
+  padding-right: 190px;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.sg-main[data-layout="column"] .sg-main__palette,
+.sg-main[data-layout="column"] .sg-main__guide {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Layout toggle button */
+.sg-layout-toggle {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
 /* Sidebars - uses base theme, not generated scheme */
 .sg-sidebar {
   position: fixed;
@@ -58,14 +81,10 @@ body {
   gap: 0.5rem;
   padding: 0.25rem;
   border-radius: 4px;
-  cursor: default;
-}
-
-.sg-sidebar__item.disabled {
   cursor: pointer;
 }
 
-.sg-sidebar__item.disabled:hover {
+.sg-sidebar__item:hover {
   background: var(--color-border);
 }
 

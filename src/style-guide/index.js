@@ -27,6 +27,9 @@ let validConfigurations = [];
 /** @type {number | null} - Index of selected config, null = unconstrained */
 let selectedConfigIndex = null;
 
+/** @type {'side-by-side' | 'column'} */
+let layoutMode = 'side-by-side';
+
 function applyMode() {
   document.documentElement.dataset.mode = mode;
 }
@@ -88,7 +91,8 @@ function render() {
     </header>
 
     <div class="sg-layout">
-    <main class="sg-main">
+    <main class="sg-main" data-layout="${layoutMode}">
+      <div class="sg-main__palette">
       <section class="sg-section">
         <div class="sg-palette-header">
           <h2>Palette Colors</h2>
@@ -114,7 +118,9 @@ function render() {
           }).join('')}
         </div>
       </section>
+      </div>
 
+      <div class="sg-main__guide">
       <section class="sg-section">
         <h2>Generated Scheme</h2>
         <div class="sg-scheme-grid">
@@ -212,10 +218,16 @@ function render() {
           </label>
         </form>
       </section>
+      </div>
 
     </main>
 
     <aside class="sg-sidebar sg-sidebar--left">
+      <h3>Layout</h3>
+      <button id="toggle-layout" class="btn btn--outline sg-layout-toggle">
+        ${layoutMode === 'side-by-side' ? 'Column View' : 'Side-By-Side View'}
+      </button>
+
       <h3>Scheme Generation</h3>
       ${validConfigurations.length === 0 && selectedConfigIndex === null
         ? '<p class="sg-config-notice">No canonical schemes found. Using playful mode (may have contrast issues).</p>'
@@ -266,6 +278,9 @@ function setupControls() {
       selectedConfigIndex = null;
       clearConfigCache();
       render();
+    } else if (target.id === 'toggle-layout') {
+      layoutMode = layoutMode === 'side-by-side' ? 'column' : 'side-by-side';
+      render();
     } else if (target.id === 'randomize-unconstrained') {
       selectedConfigIndex = null;
       render();
@@ -302,10 +317,12 @@ function setupControls() {
       const idx = parseInt(item.dataset.sidebarIndex, 10);
       if (disabledColors.has(idx)) {
         disabledColors.delete(idx);
-        selectedConfigIndex = null;
-        clearConfigCache();
-        render();
+      } else {
+        disabledColors.add(idx);
       }
+      selectedConfigIndex = null;
+      clearConfigCache();
+      render();
     } else {
       const swatch = target.closest('.sg-swatch');
       if (swatch && swatch.dataset.colorIndex !== undefined && palette) {
