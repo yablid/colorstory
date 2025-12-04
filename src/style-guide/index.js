@@ -243,7 +243,7 @@ function render() {
     </aside>
 
     <aside class="sg-sidebar sg-sidebar--right">
-      <h3>All Colors</h3>
+      <h3 id="reset-all-colors" class="sg-sidebar__header${disabledColors.size > 0 ? ' clickable' : ''}">All Colors</h3>
       <div class="sg-sidebar__list">
         ${palette.colors.map((c, i) => `
           <div class="sg-sidebar__item${disabledColors.has(i) ? ' disabled' : ''}" data-sidebar-index="${i}">
@@ -270,6 +270,11 @@ function setupControls() {
       selectedConfigIndex = null;
       render();
     } else if (target.id === 'reload-configs') {
+      clearConfigCache();
+      render();
+    } else if (target.id === 'reset-all-colors' && disabledColors.size > 0) {
+      disabledColors.clear();
+      selectedConfigIndex = null;
       clearConfigCache();
       render();
     } else if (target.closest('.sg-config-btn')) {

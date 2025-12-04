@@ -478,3 +478,11 @@ a {
   margin-bottom: 0.75rem;
 }
 
+.sg-sidebar__header.clickable {
+  cursor: pointer;
+}
+
+.sg-sidebar__header.clickable:hover {
+  color: var(--color-accent-solid);
+}
+
