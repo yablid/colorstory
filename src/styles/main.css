@@ -4,6 +4,7 @@
   box-sizing: border-box;
 }
 
+/* Base theme tokens (--color-*) for app chrome: navbar, sidebars, config panels. */
 :root {
   --color-background: #0a0a0a;
   --color-surface: #1a1a1a;

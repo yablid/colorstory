@@ -9,37 +9,38 @@ import { contrastRatio } from '../lib/math.js';
 /** @typedef {import('../components/palette-bar.js').Color} Color */
 
 /**
- * Apply color scheme as CSS custom properties
+ * Apply color scheme as CSS custom properties.
+ * These use the --scheme-* prefix to avoid collision with base theme tokens (--color-*).
  * @param {ColorScheme} scheme
  */
 export function applyScheme(scheme) {
   const root = document.documentElement;
 
   // Backgrounds
-  root.style.setProperty('--color-bg-app', rgbToString(scheme.bgApp.rgb));
-  root.style.setProperty('--color-bg-surface', rgbToString(scheme.bgSurface.rgb));
-  root.style.setProperty('--color-bg-elevated', rgbToString(scheme.bgElevated.rgb));
+  root.style.setProperty('--scheme-bg-app', rgbToString(scheme.bgApp.rgb));
+  root.style.setProperty('--scheme-bg-surface', rgbToString(scheme.bgSurface.rgb));
+  root.style.setProperty('--scheme-bg-elevated', rgbToString(scheme.bgElevated.rgb));
 
   // Text
-  root.style.setProperty('--color-text-primary', rgbToString(scheme.textPrimary.rgb));
-  root.style.setProperty('--color-text-muted', rgbToString(scheme.textMuted.rgb));
+  root.style.setProperty('--scheme-text-primary', rgbToString(scheme.textPrimary.rgb));
+  root.style.setProperty('--scheme-text-muted', rgbToString(scheme.textMuted.rgb));
 
   // Contrast fallback: if textMuted fails 3:1 on elevated, use textPrimary
   const mutedOnElevatedRatio = contrastRatio(scheme.textMuted.rgb, scheme.bgElevated.rgb);
   const textOnElevated = mutedOnElevatedRatio >= 3 ? scheme.textMuted : scheme.textPrimary;
-  root.style.setProperty('--color-text-on-elevated', rgbToString(textOnElevated.rgb));
+  root.style.setProperty('--scheme-text-on-elevated', rgbToString(textOnElevated.rgb));
 
   // Borders
-  root.style.setProperty('--color-border-subtle', rgbToString(scheme.borderSubtle.rgb));
-  root.style.setProperty('--color-border-strong', rgbToString(scheme.borderStrong.rgb));
+  root.style.setProperty('--scheme-border-subtle', rgbToString(scheme.borderSubtle.rgb));
+  root.style.setProperty('--scheme-border-strong', rgbToString(scheme.borderStrong.rgb));
 
   // Accent
-  root.style.setProperty('--color-accent-solid', rgbToString(scheme.accentSolid.rgb));
-  root.style.setProperty('--color-accent-soft', rgbToString(scheme.accentSoft.rgb));
+  root.style.setProperty('--scheme-accent-solid', rgbToString(scheme.accentSolid.rgb));
+  root.style.setProperty('--scheme-accent-soft', rgbToString(scheme.accentSoft.rgb));
 
   // Destructive - fallback to muted brick if missing
   const destructiveRgb = scheme.destructive?.rgb || [140, 82, 72];
-  root.style.setProperty('--color-destructive', rgbToString(destructiveRgb));
+  root.style.setProperty('--scheme-destructive', rgbToString(destructiveRgb));
 }
 
 /**

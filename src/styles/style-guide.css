@@ -1,8 +1,9 @@
-/* Style guide page styles */
+/* Style guide page styles
+ * Two token sets: --scheme-* for demo elements, --color-* for app chrome (see main.css). */
 
 body {
-  background: var(--color-bg-app);
-  color: var(--color-text-primary);
+  background: var(--scheme-bg-app);
+  color: var(--scheme-text-primary);
 }
 
 .sg-layout {
@@ -10,26 +11,58 @@ body {
 }
 
 .sg-main {
-  max-width: 1000px;
-  margin: 0 auto;
   padding: 1.5rem;
-  padding-left: 200px;
-  padding-right: 200px;
-}
-
-/* Layout modes */
-.sg-main[data-layout="side-by-side"] {
-  max-width: none;
   padding-left: 190px;
   padding-right: 190px;
+}
+
+/* Sticky scheme section */
+.sg-main__scheme {
+  position: sticky;
+  top: 60px;
+  z-index: 10;
+  background: var(--scheme-bg-app);
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--scheme-border-subtle);
+  text-align: center;
+}
+
+.sg-main__scheme .sg-section {
+  margin-bottom: 0;
+}
+
+.sg-main__scheme .sg-scheme-grid {
+  justify-content: center;
+}
+
+.sg-main__scheme h2 {
+  cursor: pointer;
+}
+
+.sg-main__scheme h2:hover {
+  color: var(--scheme-accent-solid);
+}
+
+.sg-main__scheme.collapsed .sg-scheme-grid {
+  display: none;
+}
+
+/* Content area below scheme */
+.sg-main__content {
+  display: block;
+}
+
+/* Side-by-side layout */
+.sg-main[data-layout="side-by-side"] .sg-main__content {
   display: grid;
   grid-template-columns: 1fr 2fr;
   gap: 2rem;
   align-items: start;
 }
 
-.sg-main[data-layout="column"] .sg-main__palette,
-.sg-main[data-layout="column"] .sg-main__guide {
+/* Column layout */
+.sg-main[data-layout="column"] .sg-main__content {
   max-width: 800px;
   margin: 0 auto;
 }
@@ -120,10 +153,10 @@ body {
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: var(--color-text-muted);
+  color: var(--scheme-text-muted);
   margin-bottom: 1rem;
   padding-bottom: 0.5rem;
-  border-bottom: 1px solid var(--color-border-subtle);
+  border-bottom: 1px solid var(--scheme-border-subtle);
 }
 
 /* Palette header with format toggles - uses base theme */
@@ -241,7 +274,7 @@ body {
   font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: var(--color-text-muted);
+  color: var(--scheme-text-muted);
   margin-bottom: 0.5rem;
 }
 
@@ -257,7 +290,7 @@ body {
   display: flex;
   align-items: flex-end;
   padding: 0.5rem;
-  border: 1px solid var(--color-border-subtle);
+  border: 1px solid var(--scheme-border-subtle);
 }
 
 .sg-scheme-swatch span {
@@ -267,17 +300,35 @@ body {
   text-shadow: 0 1px 2px rgba(0,0,0,0.5);
 }
 
+.sg-scheme-swatch.drag-over {
+  outline: 2px dashed var(--scheme-accent-solid);
+  outline-offset: 2px;
+}
+
+/* Draggable palette swatches */
+.sg-swatch[draggable="true"] {
+  cursor: grab;
+}
+
+.sg-swatch[draggable="true"]:active {
+  cursor: grabbing;
+}
+
+.sg-swatch.dragging {
+  opacity: 0.5;
+}
+
 /* Typography */
 .sg-section h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
 .sg-section h3 { font-size: 1.25rem; margin-bottom: 0.5rem; }
 .sg-section p { margin-bottom: 0.75rem; max-width: 65ch; }
 
 .text-muted {
-  color: var(--color-text-muted);
+  color: var(--scheme-text-muted);
 }
 
 a {
-  color: var(--color-accent-solid);
+  color: var(--scheme-accent-solid);
 }
 
 /* Buttons */
@@ -303,24 +354,24 @@ a {
 }
 
 .btn--accent {
-  background: var(--color-accent-solid);
+  background: var(--scheme-accent-solid);
   color: #fff;
 }
 
 .btn--subtle {
-  background: var(--color-accent-soft);
-  color: var(--color-accent-solid);
-  border-color: var(--color-accent-solid);
+  background: var(--scheme-accent-soft);
+  color: var(--scheme-accent-solid);
+  border-color: var(--scheme-accent-solid);
 }
 
 .btn--outline {
   background: transparent;
-  border-color: var(--color-border-strong);
-  color: var(--color-text-primary);
+  border-color: var(--scheme-border-strong);
+  color: var(--scheme-text-primary);
 }
 
 .btn--destructive {
-  background: var(--color-destructive);
+  background: var(--scheme-destructive);
   color: #fff;
 }
 
@@ -332,17 +383,17 @@ a {
 }
 
 .card {
-  border: 1px solid var(--color-border-subtle);
+  border: 1px solid var(--scheme-border-subtle);
   border-radius: 8px;
   padding: 1.5rem;
 }
 
 .card--surface {
-  background: var(--color-bg-surface);
+  background: var(--scheme-bg-surface);
 }
 
 .card--elevated {
-  background: var(--color-bg-elevated);
+  background: var(--scheme-bg-elevated);
 }
 
 .card h3 {
@@ -350,7 +401,7 @@ a {
 }
 
 .card p {
-  color: var(--color-text-muted);
+  color: var(--scheme-text-muted);
   margin-bottom: 1rem;
 }
 
@@ -367,7 +418,7 @@ a {
   flex-direction: column;
   gap: 0.375rem;
   font-size: 0.875rem;
-  color: var(--color-text-muted);
+  color: var(--scheme-text-muted);
 }
 
 .sg-form label.checkbox {
@@ -379,16 +430,16 @@ a {
 .sg-form input[type="text"],
 .sg-form select {
   padding: 0.625rem 0.875rem;
-  background: var(--color-bg-surface);
-  border: 1px solid var(--color-border-subtle);
+  background: var(--scheme-bg-surface);
+  border: 1px solid var(--scheme-border-subtle);
   border-radius: 6px;
-  color: var(--color-text-primary);
+  color: var(--scheme-text-primary);
   font-size: 0.875rem;
 }
 
 .sg-form input[type="text"]:focus,
 .sg-form select:focus {
-  outline: 2px solid var(--color-accent-solid);
+  outline: 2px solid var(--scheme-accent-solid);
   outline-offset: -1px;
 }
 
@@ -480,9 +531,9 @@ a {
 
 .sg-config-notice {
   font-size: 0.75rem;
-  color: var(--color-destructive, #8c5248);
+  color: var(--scheme-destructive, #8c5248);
   background: rgba(140, 82, 72, 0.1);
-  border: 1px solid var(--color-destructive, #8c5248);
+  border: 1px solid var(--scheme-destructive, #8c5248);
   border-radius: 4px;
   padding: 0.5rem;
   margin: 0 0 0.75rem 0;
@@ -502,6 +553,6 @@ a {
 }
 
 .sg-sidebar__header.clickable:hover {
-  color: var(--color-accent-solid);
+  color: var(--color-primary);
 }
 

@@ -14,7 +14,6 @@
     { "name": "pearl beige", "rgb": [225, 209, 175], "oklch": [0.865, 0.049, 86] },
     { "name": "ivory", "rgb": [255, 255, 227], "oklch": [0.993, 0.036, 107] },
     { "name": "palm leaf", "rgb": [118, 143, 98], "oklch": [0.619, 0.071, 132] },
-    { "name": "white", "rgb": [215, 214, 220], "oklch": [0.879, 0.008, 294] },
     { "name": "Rosy Granite", "rgb": [146, 140, 142], "oklch": [0.646, 0.008, 355] },
     { "name": "black", "rgb": [2, 1, 0], "oklch": [0.071, 0.015, 82] },
     { "name": "taupe", "rgb": [176, 158, 153], "oklch": [0.713, 0.022, 36] },
@@ -23,10 +22,11 @@
     { "name": "teal black", "rgb": [0, 26, 27], "oklch": [0.198, 0.034, 198] },
     { "name": "deep teal", "rgb": [29, 51, 59], "oklch": [0.306, 0.031, 223] },
     { "name": "bottle green", "rgb": [33, 55, 44], "oklch": [0.314, 0.034, 162] },
-    { "name": "celadon", "rgb": [170, 221, 173], "oklch": [0.849, 0.085, 146] },
     { "name": "ebonized wood", "rgb": [37, 36, 39], "oklch": [0.263, 0.006, 301] },
     { "name": "soft straw", "rgb": [251, 232, 211], "oklch": [0.941, 0.035, 70] },
     { "name": "Pink Limestone", "rgb": [242, 218, 214], "oklch": [0.907, 0.027, 29] },
-    { "name": "light blue grey", "rgb": [177, 193, 218], "oklch": [0.807, 0.04, 259] }
+    { "name": "light blue grey", "rgb": [177, 193, 218], "oklch": [0.807, 0.04, 259] },
+    { "name": "Light sea green", "rgb": [216, 255, 237], "oklch": [0.968, 0.047, 166] },
+    { "name": "chalk white", "rgb": [235, 237, 234], "oklch": [0.944, 0.005, 135] }
   ]
 }

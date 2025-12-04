@@ -68,18 +68,22 @@ The scheme generator (`src/lib/scheme.js`) produces a 10-token color scheme from
 
 #### Token Contract (10 tokens)
 
+Token (Role): Notes
+
 | Token | Role | Constraints |
-|-------|------|-------------|
-| `bgApp` | Main background | Dark neutral (dark mode) or light neutral (light mode) |
-| `bgSurface` | Card/panel surfaces | Slightly offset from bgApp |
+|-------|------|-'------------|
+| `bgApp` | Main background' | Darkest (or lightest) main canvas. |
+| `bgSurface` | Main work surface | Main cards, panels, chat, inputs - people stare at this for hours. |
 | `bgElevated` | Modals, dropdowns | Slightly offset from bgSurface |
 | `textPrimary` | Primary text | 4.5:1+ contrast on bgApp |
 | `textMuted` | Secondary text | 3:1+ contrast on bgApp |
-| `borderSubtle` | Subtle dividers | 1.5-3:1 contrast on backgrounds |
-| `borderStrong` | Prominent borders | 3:1+ contrast on bgApp |
-| `accentSolid` | Buttons, links | Vivid color with hue separation |
-| `accentSoft` | Hover states | Muted version of accent hue |
+| `borderSubtle` | Subtle dividers | 1.5-3:1 contrast on backgrounds. card outlines, row separators. |
+| `borderStrong` | Prominent borders | 3:1+ contrast on bgApp. Focus rings, "interactive" / "important" |
+| `accentSolid` | Buttons, links | Vivid color with hue separation. Primary CTAs, active nav, links. Click here. |
+| `accentSoft` | Hover states | Muted version of accent hue. Selected row backgrounds, hover, accent-solid but lower energy. |
 | `destructive` | Error/danger | Falls back to global default if palette lacks candidate |
+
+These tokens use the `--scheme-*` CSS prefix. A separate `--color-*` base theme exists for app chrome (navbar, sidebars).
 
 #### Generation Modes
 

@@ -30,6 +30,47 @@ let selectedConfigIndex = null;
 /** @type {'side-by-side' | 'column'} */
 let layoutMode = 'side-by-side';
 
+/** @type {boolean} */
+let schemeCollapsed = false;
+
+/** @type {Object<string, import('../components/palette-bar.js').Color>} - Manual overrides for scheme slots */
+let schemeOverrides = {};
+
+/** @type {import('../lib/scheme/index.js').ColorScheme | null} - Cached base scheme */
+let cachedScheme = null;
+
+/**
+ * Regenerate the base scheme from current colors and config.
+ * Only call this when explicitly needed (randomize, config select, mode change).
+ */
+function regenerateScheme() {
+  if (!palette) return;
+  const activeColors = palette.colors.filter((_, i) => !disabledColors.has(i));
+  const colors = activeColors.length > 0 ? activeColors : palette.colors;
+
+  validConfigurations = getValidConfigurations(colors, mode);
+
+  if (selectedConfigIndex !== null && validConfigurations[selectedConfigIndex]) {
+    cachedScheme = applyConfiguration(validConfigurations[selectedConfigIndex], colors);
+  } else {
+    cachedScheme = generateScheme(colors, mode);
+  }
+}
+
+/**
+ * Remove overrides that reference a specific color index.
+ * @param {number} colorIndex
+ */
+function clearOverridesForColor(colorIndex) {
+  if (!palette) return;
+  const color = palette.colors[colorIndex];
+  for (const [slot, overrideColor] of Object.entries(schemeOverrides)) {
+    if (overrideColor === color) {
+      delete schemeOverrides[slot];
+    }
+  }
+}
+
 function applyMode() {
   document.documentElement.dataset.mode = mode;
 }
@@ -66,15 +107,20 @@ function render() {
   const activeColors = palette.colors.filter((_, i) => !disabledColors.has(i));
   const colors = activeColors.length > 0 ? activeColors : palette.colors;
 
-  // Get valid configurations
+  // Get valid configurations (for sidebar display)
   validConfigurations = getValidConfigurations(colors, mode);
 
-  // Generate scheme from selected config or unconstrained
-  let scheme;
-  if (selectedConfigIndex !== null && validConfigurations[selectedConfigIndex]) {
-    scheme = applyConfiguration(validConfigurations[selectedConfigIndex], colors);
-  } else {
-    scheme = generateScheme(colors, mode);
+  // Generate scheme only if not cached
+  if (!cachedScheme) {
+    regenerateScheme();
+  }
+
+  // Apply manual overrides to a copy of the cached scheme
+  const scheme = { ...cachedScheme };
+  for (const [slot, color] of Object.entries(schemeOverrides)) {
+    if (scheme[slot] !== undefined) {
+      scheme[slot] = color;
+    }
   }
 
   applyScheme(scheme);
@@ -92,77 +138,80 @@ function render() {
 
     <div class="sg-layout">
     <main class="sg-main" data-layout="${layoutMode}">
-      <div class="sg-main__palette">
-      <section class="sg-section">
-        <div class="sg-palette-header">
-          <h2>Palette Colors</h2>
-          <div class="sg-format-toggles">
-            <button class="sg-format-btn${copyFormat === 'oklch' ? ' active' : ''}" data-format="oklch">oklch</button>
-            <button class="sg-format-btn${copyFormat === 'hex' ? ' active' : ''}" data-format="hex">hex</button>
-            <button class="sg-format-btn${copyFormat === 'rgb' ? ' active' : ''}" data-format="rgb">rgb</button>
-          </div>
-        </div>
-        <div class="sg-swatches">
-          ${palette.colors.map((c, i) => {
-            if (disabledColors.has(i)) return '';
-            return `
-            <div class="sg-swatch" data-color-index="${i}" style="background: ${rgbToString(c.rgb)}">
-              <span class="sg-swatch__name">${c.name}</span>
-              <button class="sg-swatch__remove" data-remove-index="${i}" title="Remove from palette">
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-                  <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
-                </svg>
-              </button>
+      <div class="sg-main__scheme${schemeCollapsed ? ' collapsed' : ''}">
+        <section class="sg-section">
+          <h2 id="toggle-scheme">${schemeCollapsed ? 'Generated Scheme +' : 'Generated Scheme'}</h2>
+          <div class="sg-scheme-grid">
+            <div class="sg-scheme-group">
+              <h3>Backgrounds</h3>
+              <div class="sg-scheme-row">
+                <div class="sg-scheme-swatch" data-scheme-slot="bgApp" style="background: var(--scheme-bg-app)"><span>bg-app</span></div>
+                <div class="sg-scheme-swatch" data-scheme-slot="bgSurface" style="background: var(--scheme-bg-surface)"><span>bg-surface</span></div>
+                <div class="sg-scheme-swatch" data-scheme-slot="bgElevated" style="background: var(--scheme-bg-elevated)"><span>bg-elevated</span></div>
+              </div>
             </div>
-          `;
-          }).join('')}
-        </div>
-      </section>
+            <div class="sg-scheme-group">
+              <h3>Text</h3>
+              <div class="sg-scheme-row">
+                <div class="sg-scheme-swatch" data-scheme-slot="textPrimary" style="background: var(--scheme-text-primary)"><span>text-primary</span></div>
+                <div class="sg-scheme-swatch" data-scheme-slot="textMuted" style="background: var(--scheme-text-muted)"><span>text-muted</span></div>
+              </div>
+            </div>
+            <div class="sg-scheme-group">
+              <h3>Borders</h3>
+              <div class="sg-scheme-row">
+                <div class="sg-scheme-swatch" data-scheme-slot="borderSubtle" style="background: var(--scheme-border-subtle)"><span>border-subtle</span></div>
+                <div class="sg-scheme-swatch" data-scheme-slot="borderStrong" style="background: var(--scheme-border-strong)"><span>border-strong</span></div>
+              </div>
+            </div>
+            <div class="sg-scheme-group">
+              <h3>Accent</h3>
+              <div class="sg-scheme-row">
+                <div class="sg-scheme-swatch" data-scheme-slot="accentSolid" style="background: var(--scheme-accent-solid)"><span>accent-solid</span></div>
+                <div class="sg-scheme-swatch" data-scheme-slot="accentSoft" style="background: var(--scheme-accent-soft)"><span>accent-soft</span></div>
+              </div>
+            </div>
+            <div class="sg-scheme-group">
+              <h3>Destructive</h3>
+              <div class="sg-scheme-row">
+                <div class="sg-scheme-swatch" data-scheme-slot="destructive" style="background: var(--scheme-destructive)"><span>destructive</span></div>
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
 
-      <div class="sg-main__guide">
-      <section class="sg-section">
-        <h2>Generated Scheme</h2>
-        <div class="sg-scheme-grid">
-          <div class="sg-scheme-group">
-            <h3>Backgrounds</h3>
-            <div class="sg-scheme-row">
-              <div class="sg-scheme-swatch" style="background: var(--color-bg-app)"><span>bg-app</span></div>
-              <div class="sg-scheme-swatch" style="background: var(--color-bg-surface)"><span>bg-surface</span></div>
-              <div class="sg-scheme-swatch" style="background: var(--color-bg-elevated)"><span>bg-elevated</span></div>
+      <div class="sg-main__content">
+        <div class="sg-main__palette">
+          <section class="sg-section">
+            <div class="sg-palette-header">
+              <h2>Palette Colors</h2>
+              <div class="sg-format-toggles">
+                <button class="sg-format-btn${copyFormat === 'oklch' ? ' active' : ''}" data-format="oklch">oklch</button>
+                <button class="sg-format-btn${copyFormat === 'hex' ? ' active' : ''}" data-format="hex">hex</button>
+                <button class="sg-format-btn${copyFormat === 'rgb' ? ' active' : ''}" data-format="rgb">rgb</button>
+              </div>
             </div>
-          </div>
-          <div class="sg-scheme-group">
-            <h3>Text</h3>
-            <div class="sg-scheme-row">
-              <div class="sg-scheme-swatch" style="background: var(--color-text-primary)"><span>text-primary</span></div>
-              <div class="sg-scheme-swatch" style="background: var(--color-text-muted)"><span>text-muted</span></div>
+            <div class="sg-swatches">
+              ${palette.colors.map((c, i) => {
+                if (disabledColors.has(i)) return '';
+                return `
+                <div class="sg-swatch" draggable="true" data-color-index="${i}" style="background: ${rgbToString(c.rgb)}">
+                  <span class="sg-swatch__name">${c.name}</span>
+                  <button class="sg-swatch__remove" data-remove-index="${i}" title="Remove from palette">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                      <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
+                    </svg>
+                  </button>
+                </div>
+              `;
+              }).join('')}
             </div>
-          </div>
-          <div class="sg-scheme-group">
-            <h3>Borders</h3>
-            <div class="sg-scheme-row">
-              <div class="sg-scheme-swatch" style="background: var(--color-border-subtle)"><span>border-subtle</span></div>
-              <div class="sg-scheme-swatch" style="background: var(--color-border-strong)"><span>border-strong</span></div>
-            </div>
-          </div>
-          <div class="sg-scheme-group">
-            <h3>Accent</h3>
-            <div class="sg-scheme-row">
-              <div class="sg-scheme-swatch" style="background: var(--color-accent-solid)"><span>accent-solid</span></div>
-              <div class="sg-scheme-swatch" style="background: var(--color-accent-soft)"><span>accent-soft</span></div>
-            </div>
-          </div>
-          <div class="sg-scheme-group">
-            <h3>Destructive</h3>
-            <div class="sg-scheme-row">
-              <div class="sg-scheme-swatch" style="background: var(--color-destructive)"><span>destructive</span></div>
-            </div>
-          </div>
+          </section>
         </div>
-      </section>
 
-      <section class="sg-section">
+        <div class="sg-main__guide">
+          <section class="sg-section">
         <h2>Typography</h2>
         <h1>Heading 1</h1>
         <h2>Heading 2</h2>
@@ -217,7 +266,8 @@ function render() {
             <input type="checkbox"> Checkbox option
           </label>
         </form>
-      </section>
+          </section>
+        </div>
       </div>
 
     </main>
@@ -276,26 +326,39 @@ function setupControls() {
       mode = mode === 'light' ? 'dark' : 'light';
       applyMode();
       selectedConfigIndex = null;
+      cachedScheme = null;
+      schemeOverrides = {};
       clearConfigCache();
       render();
     } else if (target.id === 'toggle-layout') {
       layoutMode = layoutMode === 'side-by-side' ? 'column' : 'side-by-side';
       render();
+    } else if (target.id === 'toggle-scheme') {
+      schemeCollapsed = !schemeCollapsed;
+      render();
     } else if (target.id === 'randomize-unconstrained') {
       selectedConfigIndex = null;
+      cachedScheme = null;
+      schemeOverrides = {};
       render();
     } else if (target.id === 'reload-configs') {
+      cachedScheme = null;
+      schemeOverrides = {};
       clearConfigCache();
       render();
     } else if (target.id === 'reset-all-colors' && disabledColors.size > 0) {
       disabledColors.clear();
       selectedConfigIndex = null;
+      cachedScheme = null;
+      schemeOverrides = {};
       clearConfigCache();
       render();
     } else if (target.closest('.sg-config-btn')) {
       const btn = target.closest('.sg-config-btn');
       const idx = parseInt(btn.dataset.configIndex, 10);
       selectedConfigIndex = idx;
+      cachedScheme = null;
+      schemeOverrides = {};
       render();
     } else if (target.classList.contains('sg-format-btn')) {
       const format = target.dataset.format;
@@ -309,7 +372,7 @@ function setupControls() {
       const btn = target.closest('.sg-swatch__remove');
       const idx = parseInt(btn.dataset.removeIndex, 10);
       disabledColors.add(idx);
-      selectedConfigIndex = null;
+      clearOverridesForColor(idx);
       clearConfigCache();
       render();
     } else if (target.closest('.sg-sidebar__item')) {
@@ -319,8 +382,8 @@ function setupControls() {
         disabledColors.delete(idx);
       } else {
         disabledColors.add(idx);
+        clearOverridesForColor(idx);
       }
-      selectedConfigIndex = null;
       clearConfigCache();
       render();
     } else {
@@ -332,6 +395,62 @@ function setupControls() {
           const colorStr = getColorString(color, copyFormat);
           copyToClipboard(colorStr);
         }
+      }
+    }
+  });
+
+  // Drag and drop for scheme overrides
+  document.addEventListener('dragstart', (e) => {
+    const swatch = e.target.closest('.sg-swatch[draggable="true"]');
+    if (swatch && swatch.dataset.colorIndex !== undefined) {
+      e.dataTransfer.setData('text/plain', swatch.dataset.colorIndex);
+      e.dataTransfer.effectAllowed = 'copy';
+      swatch.classList.add('dragging');
+    }
+  });
+
+  document.addEventListener('dragend', (e) => {
+    const swatch = e.target.closest('.sg-swatch');
+    if (swatch) {
+      swatch.classList.remove('dragging');
+    }
+    document.querySelectorAll('.sg-scheme-swatch').forEach(el => {
+      el.classList.remove('drag-over');
+    });
+  });
+
+  document.addEventListener('dragover', (e) => {
+    const target = e.target.closest('.sg-scheme-swatch[data-scheme-slot]');
+    if (target) {
+      e.preventDefault();
+      e.dataTransfer.dropEffect = 'copy';
+    }
+  });
+
+  document.addEventListener('dragenter', (e) => {
+    const target = e.target.closest('.sg-scheme-swatch[data-scheme-slot]');
+    if (target) {
+      target.classList.add('drag-over');
+    }
+  });
+
+  document.addEventListener('dragleave', (e) => {
+    const target = e.target.closest('.sg-scheme-swatch[data-scheme-slot]');
+    if (target && !target.contains(e.relatedTarget)) {
+      target.classList.remove('drag-over');
+    }
+  });
+
+  document.addEventListener('drop', (e) => {
+    const target = e.target.closest('.sg-scheme-swatch[data-scheme-slot]');
+    if (target && palette) {
+      e.preventDefault();
+      const colorIndex = parseInt(e.dataTransfer.getData('text/plain'), 10);
+      const slot = target.dataset.schemeSlot;
+      const color = palette.colors[colorIndex];
+      if (color && slot) {
+        schemeOverrides[slot] = color;
+        render();
       }
     }
   });
