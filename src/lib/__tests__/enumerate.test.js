@@ -32,7 +32,8 @@ describe('enumerateConfigurations', () => {
         'borderSubtle',
         'borderStrong',
         'accentSolid',
-        'accentSoft'
+        'accentSoft',
+        'textOnAccent'
       ];
 
       configs.forEach((config) => {

@@ -155,6 +155,7 @@ function render() {
               <div class="sg-scheme-row">
                 <div class="sg-scheme-swatch" data-scheme-slot="textPrimary" style="background: var(--scheme-text-primary)"><span>text-primary</span></div>
                 <div class="sg-scheme-swatch" data-scheme-slot="textMuted" style="background: var(--scheme-text-muted)"><span>text-muted</span></div>
+                <div class="sg-scheme-swatch" data-scheme-slot="textOnAccent" style="background: var(--scheme-text-on-accent)"><span>text-on-accent</span></div>
               </div>
             </div>
             <div class="sg-scheme-group">

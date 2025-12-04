@@ -1,9 +1,9 @@
 /**
  * Color scheme generation
  *
- * TOKEN CONTRACT (10 tokens)
+ * TOKEN CONTRACT (11 tokens)
  * --------------------------
- * A valid ColorScheme always contains exactly these 10 tokens:
+ * A valid ColorScheme always contains exactly these 11 tokens:
  *
  * Backgrounds:
  *   - bgApp: Main application background
@@ -13,6 +13,7 @@
  * Text:
  *   - textPrimary: Primary readable text (must pass 4.5:1 on bgApp)
  *   - textMuted: Secondary/muted text (must pass 3:1 on bgApp)
+ *   - textOnAccent: Text on accent backgrounds (must pass 4.5:1 on accentSolid)
  *
  * Borders:
  *   - borderSubtle: Subtle dividers (1.5-3:1 contrast)

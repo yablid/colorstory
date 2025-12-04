@@ -50,7 +50,8 @@ export const TOKEN_ORDER = [
   'borderSubtle',
   'borderStrong',
   'accentSolid',
-  'accentSoft'
+  'accentSoft',
+  'textOnAccent'
 ];
 
 /** @type {Object.<string, TokenConstraint>} */
@@ -143,6 +144,21 @@ export const DARK_MODE_CONSTRAINTS = {
     }),
     contrast: [
       { against: 'bgApp', min: 1.5, max: 3.0 }
+    ]
+  },
+
+  textOnAccent: {
+    maxChroma: 0.04,
+    lightness: (deps) => {
+      // Dynamic based on accent lightness: dark accent → light text, light accent → dark text
+      const accentL = deps.accentSolid.oklch[0];
+      if (accentL < 0.55) {
+        return { min: 0.85, max: 1.0 };
+      }
+      return { min: 0.0, max: 0.25 };
+    },
+    contrast: [
+      { against: 'accentSolid', min: 4.5 }
     ]
   }
 };
@@ -237,6 +253,21 @@ export const LIGHT_MODE_CONSTRAINTS = {
     }),
     contrast: [
       { against: 'bgApp', min: 1.5, max: 3.0 }
+    ]
+  },
+
+  textOnAccent: {
+    maxChroma: 0.04,
+    lightness: (deps) => {
+      // Dynamic based on accent lightness: dark accent → light text, light accent → dark text
+      const accentL = deps.accentSolid.oklch[0];
+      if (accentL < 0.55) {
+        return { min: 0.85, max: 1.0 };
+      }
+      return { min: 0.0, max: 0.25 };
+    },
+    contrast: [
+      { against: 'accentSolid', min: 4.5 }
     ]
   }
 };

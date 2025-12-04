@@ -33,6 +33,7 @@ import { hueDifference } from '../math.js';
  * @property {Color} borderStrong
  * @property {Color} accentSolid
  * @property {Color} accentSoft
+ * @property {Color} textOnAccent
  * @property {Color} destructive
  */
 
@@ -153,6 +154,22 @@ function generateDarkScheme(p) {
     || findClosestByLightness(p.all, 0.5)
     || accentSolid;
 
+  // Text on accent: neutral with 4.5:1 contrast on accentSolid
+  const accentL = accentSolid.oklch[0];
+  let textOnAccentCandidates;
+  if (accentL < 0.55) {
+    // Dark accent → light text
+    textOnAccentCandidates = [...p.lightNeutrals, ...p.midNeutrals]
+      .filter(c => c.oklch[0] >= 0.85);
+  } else {
+    // Light accent → dark text
+    textOnAccentCandidates = [...p.darkNeutrals, ...p.midNeutrals]
+      .filter(c => c.oklch[0] <= 0.25);
+  }
+  const textOnAccentWithContrast = filterByContrast(textOnAccentCandidates, accentSolid, 4.5);
+  const textOnAccent = pickRandom(textOnAccentWithContrast.length > 0 ? textOnAccentWithContrast : textOnAccentCandidates)
+    || textPrimary;
+
   // Destructive color
   const destructive = pickDestructiveColor(p);
 
@@ -166,6 +183,7 @@ function generateDarkScheme(p) {
     borderStrong,
     accentSolid,
     accentSoft,
+    textOnAccent,
     destructive
   };
 }
@@ -270,6 +288,22 @@ function generateLightScheme(p) {
     || findClosestByLightness(p.all, 0.5)
     || accentSolid;
 
+  // Text on accent: neutral with 4.5:1 contrast on accentSolid
+  const accentL = accentSolid.oklch[0];
+  let textOnAccentCandidates;
+  if (accentL < 0.55) {
+    // Dark accent → light text
+    textOnAccentCandidates = [...p.lightNeutrals, ...p.midNeutrals]
+      .filter(c => c.oklch[0] >= 0.85);
+  } else {
+    // Light accent → dark text
+    textOnAccentCandidates = [...p.darkNeutrals, ...p.midNeutrals]
+      .filter(c => c.oklch[0] <= 0.25);
+  }
+  const textOnAccentWithContrast = filterByContrast(textOnAccentCandidates, accentSolid, 4.5);
+  const textOnAccent = pickRandom(textOnAccentWithContrast.length > 0 ? textOnAccentWithContrast : textOnAccentCandidates)
+    || textPrimary;
+
   // Destructive color
   const destructive = pickDestructiveColor(p);
 
@@ -283,6 +317,7 @@ function generateLightScheme(p) {
     borderStrong,
     accentSolid,
     accentSoft,
+    textOnAccent,
     destructive
   };
 }

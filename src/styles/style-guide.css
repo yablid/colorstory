@@ -448,7 +448,7 @@ a:hover {
 .btn-primary {
   background: var(--scheme-accent-solid);
   border-color: var(--scheme-accent-solid);
-  color: #fff;
+  color: var(--scheme-text-on-accent);
 }
 
 .btn-primary:hover {
@@ -479,7 +479,7 @@ a:hover {
 .btn-destructive {
   background: var(--scheme-destructive);
   border-color: var(--scheme-destructive);
-  color: #fff;
+  color: var(--scheme-text-on-accent);
 }
 
 .btn-destructive:hover {

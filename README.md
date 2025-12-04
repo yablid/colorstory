@@ -34,7 +34,7 @@ Controls:
 
 Shows a single palette applied to a full UI component library:
 - Palette swatches (click to copy hex/rgb/oklch)
-- 10 Generated scheme tokens: [token contract](#token-contract-10-tokens)
+- 11 Generated scheme tokens: [token contract](#token-contract-11-tokens)
 - Typography samples
 - Buttons (accent, subtle, outline, destructive variants)
 - Cards (surface and elevated)
@@ -64,9 +64,9 @@ Visual tool for building palettes:
 
 ### Scheme Generation
 
-The scheme generator (`src/lib/scheme.js`) produces a 10-token color scheme from any palette.
+The scheme generator (`src/lib/scheme.js`) produces an 11-token color scheme from any palette.
 
-#### Token Contract (10 tokens)
+#### Token Contract (11 tokens)
 
 Token (Role): Notes
 
@@ -77,6 +77,7 @@ Token (Role): Notes
 | `bgElevated` | Modals, dropdowns | Slightly offset from bgSurface |
 | `textPrimary` | Primary text | 4.5:1+ contrast on bgApp |
 | `textMuted` | Secondary text | 3:1+ contrast on bgApp |
+| `textOnAccent` | Text on accent backgrounds | 4.5:1+ contrast on accentSolid. Button labels, etc. |
 | `borderSubtle` | Subtle dividers | 1.5-3:1 contrast on backgrounds. card outlines, row separators. |
 | `borderStrong` | Prominent borders | 3:1+ contrast on bgApp. Focus rings, "interactive" / "important" |
 | `accentSolid` | Buttons, links | Vivid color with hue separation. Primary CTAs, active nav, links. Click here. |

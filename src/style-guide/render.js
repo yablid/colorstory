@@ -24,6 +24,7 @@ export function applyScheme(scheme) {
   // Text
   root.style.setProperty('--scheme-text-primary', rgbToString(scheme.textPrimary.rgb));
   root.style.setProperty('--scheme-text-muted', rgbToString(scheme.textMuted.rgb));
+  root.style.setProperty('--scheme-text-on-accent', rgbToString(scheme.textOnAccent.rgb));
 
   // Contrast fallback: if textMuted fails 3:1 on elevated, use textPrimary
   const mutedOnElevatedRatio = contrastRatio(scheme.textMuted.rgb, scheme.bgElevated.rgb);

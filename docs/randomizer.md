@@ -23,6 +23,7 @@ Constraint-based algorithm for generating valid color schemes from palettes. We 
 | borderStrong | C < 0.04 | between borderSubtle and text | >= 3:1 vs bg |
 | accentSolid | C >= 0.08 | L: 0.45 - 0.80 | - |
 | accentSoft | C: 0.5-0.8 * accentSolid.C | L: bg to bg+0.25 | 1.5-3:1 vs bg, same hue as accentSolid |
+| textOnAccent | C < 0.04 | L: 0.85-1.0 if accent dark, 0.0-0.25 if accent light | >= 4.5:1 vs accentSolid |
 
 ### Light Mode
 
@@ -37,6 +38,7 @@ Constraint-based algorithm for generating valid color schemes from palettes. We 
 | borderStrong | C < 0.04 | between text and borderSubtle | >= 3:1 vs bg |
 | accentSolid | C >= 0.08 | L: 0.45 - 0.80 | - |
 | accentSoft | C: 0.5-0.8 * accentSolid.C | L: bg-0.25 to bg | 1.5-3:1 vs bg, same hue as accentSolid |
+| textOnAccent | C < 0.04 | L: 0.85-1.0 if accent dark, 0.0-0.25 if accent light | >= 4.5:1 vs accentSolid |
 
 ---
 
@@ -55,6 +57,7 @@ Required contrast ratios for valid schemes:
 | bg ↔ borderSubtle | 1.2-3:1 |
 | bg ↔ borderStrong | >= 3:1 |
 | bg ↔ accentSoft | 1.5-3:1 |
+| accentSolid ↔ textOnAccent | >= 4.5:1 |
 
 ---
 
