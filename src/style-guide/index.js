@@ -211,62 +211,141 @@ function render() {
         </div>
 
         <div class="sg-main__guide">
-          <section class="sg-section">
-        <h2>Typography</h2>
-        <h1>Heading 1</h1>
-        <h2>Heading 2</h2>
-        <h3>Heading 3</h3>
-        <p>Body text paragraph. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-        <p><a href="#">This is a link</a></p>
-        <p class="text-muted">Muted text for secondary information.</p>
-      </section>
+          <div class="sg-guide-sections">
+            <!-- Left column: typography, buttons, alerts -->
+            <div class="sg-guide-column">
+              <section class="sg-guide-section">
+                <h2 class="sg-section-title">Typography</h2>
+                <div class="sg-section-body sg-typography">
+                  <h1>Heading 1 – Primary</h1>
+                  <p>Primary body text using <code>text-primary</code>. Readable on <code>bg-surface</code> and <code>bg-elevated</code>.</p>
+                  <h2>Heading 2 – Section</h2>
+                  <p class="sg-text-muted">Muted text for descriptions, timestamps, and secondary information.</p>
+                  <h3>Heading 3 – Subheading</h3>
+                  <p>Links use <a href="#">accent-solid</a> for navigation and inline actions.</p>
+                </div>
+              </section>
 
-      <section class="sg-section">
-        <h2>Buttons</h2>
-        <div class="sg-buttons">
-          <button class="btn btn--accent">Accent</button>
-          <button class="btn btn--subtle">Subtle</button>
-          <button class="btn btn--outline">Outline</button>
-          <button class="btn btn--destructive">Destructive</button>
-        </div>
-      </section>
+              <section class="sg-guide-section">
+                <h2 class="sg-section-title">Buttons & Messages</h2>
+                <div class="sg-section-body">
+                  <div class="sg-button-row">
+                    <button class="btn btn-primary">Primary</button>
+                    <button class="btn btn-subtle">Subtle</button>
+                    <button class="btn btn-outline">Outline</button>
+                    <button class="btn btn-destructive">Delete</button>
+                    <button class="btn btn-ghost">Ghost</button>
+                  </div>
 
-      <section class="sg-section">
-        <h2>Cards</h2>
-        <div class="sg-cards">
-          <div class="card card--surface">
-            <h3>Surface Card</h3>
-            <p>This card uses the surface background color.</p>
-            <button class="btn btn--accent">Action</button>
+                  <div class="sg-badge-row">
+                    <span class="badge">Accent soft chip</span>
+                    <span class="badge">Selected filter</span>
+                    <span class="badge">Tag / label</span>
+                  </div>
+
+                  <div class="sg-alert">
+                    <p class="sg-alert-title">Informational message</p>
+                    <p class="sg-alert-body">Uses border-subtle and border-strong to establish hierarchy without new colors.</p>
+                  </div>
+
+                  <div class="sg-alert sg-alert--error">
+                    <p class="sg-alert-title">Error: Something went wrong</p>
+                    <p class="sg-alert-body">Destructive color for border and title makes error states immediately recognizable.</p>
+                  </div>
+                </div>
+              </section>
+            </div>
+
+            <!-- Right column: cards, forms, table, popover -->
+            <div class="sg-guide-column">
+              <section class="sg-guide-section">
+                <h2 class="sg-section-title">Cards & Surfaces</h2>
+                <div class="sg-section-body">
+                  <div class="sg-card-grid">
+                    <article class="card card-surface">
+                      <h3>Surface card</h3>
+                      <p>Uses bg-surface and border-subtle. Good for main content panels and lists.</p>
+                      <p class="card-meta">Card meta text</p>
+                      <div class="sg-button-row">
+                        <button class="btn btn-primary">Primary</button>
+                        <button class="btn btn-subtle">Secondary</button>
+                      </div>
+                    </article>
+                    <article class="card card-elevated">
+                      <h3>Elevated card</h3>
+                      <p>Uses bg-elevated with stronger shadow. For featured info, side panels, or overlays.</p>
+                      <p class="card-meta">Card meta text</p>
+                      <div class="sg-button-row">
+                        <button class="btn btn-outline">Dismiss</button>
+                        <button class="btn btn-primary">Confirm</button>
+                      </div>
+                    </article>
+                  </div>
+                </div>
+              </section>
+
+              <section class="sg-guide-section">
+                <h2 class="sg-section-title">Form & Data</h2>
+                <div class="sg-section-body sg-columns">
+                  <form class="sg-form" onsubmit="return false">
+                    <div class="sg-field">
+                      <label for="sg-name">Text input</label>
+                      <input id="sg-name" class="sg-input" type="text" placeholder="Enter a project name…">
+                    </div>
+                    <div class="sg-field">
+                      <label for="sg-status">Select</label>
+                      <select id="sg-status" class="sg-select">
+                        <option>Draft</option>
+                        <option>In review</option>
+                        <option>Approved</option>
+                      </select>
+                    </div>
+                    <div class="sg-checkbox-row">
+                      <input id="sg-notify" type="checkbox" checked>
+                      <label for="sg-notify">Send me notifications</label>
+                    </div>
+                    <div class="sg-button-row">
+                      <button class="btn btn-primary">Save</button>
+                      <button class="btn btn-ghost" type="button">Cancel</button>
+                    </div>
+                  </form>
+
+                  <div class="sg-table-wrapper">
+                    <table>
+                      <thead>
+                        <tr><th>Item</th><th>Status</th><th>Owner</th></tr>
+                      </thead>
+                      <tbody>
+                        <tr><td>Palette explorer</td><td>Active</td><td>You</td></tr>
+                        <tr><td>Theme randomizer</td><td>Draft</td><td>System</td></tr>
+                        <tr><td>Export pipeline</td><td>In review</td><td>Design</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </section>
+
+              <section class="sg-guide-section">
+                <h2 class="sg-section-title">Elevated Popover</h2>
+                <div class="sg-section-body">
+                  <div class="sg-popover-demo">
+                    <div class="sg-popover-anchor">
+                      <button class="btn btn-outline">Show popover</button>
+                      <div class="sg-popover">
+                        <h4>Popover using bg-elevated</h4>
+                        <p>Demonstrates bg-elevated for menus, tooltips, and floating panels.</p>
+                        <div class="sg-popover-footer">
+                          <button class="btn btn-ghost">Later</button>
+                          <button class="btn btn-primary">Do it</button>
+                        </div>
+                      </div>
+                    </div>
+                    <p class="sg-text-muted">Always visible to show token usage.</p>
+                  </div>
+                </div>
+              </section>
+            </div>
           </div>
-          <div class="card card--elevated">
-            <h3>Elevated Card</h3>
-            <p>This card uses the elevated background color.</p>
-            <button class="btn btn--subtle">Action</button>
-          </div>
-        </div>
-      </section>
-
-      <section class="sg-section">
-        <h2>Form Elements</h2>
-        <form class="sg-form" onsubmit="return false">
-          <label>
-            Text Input
-            <input type="text" placeholder="Enter text...">
-          </label>
-          <label>
-            Select
-            <select>
-              <option>Option 1</option>
-              <option>Option 2</option>
-              <option>Option 3</option>
-            </select>
-          </label>
-          <label class="checkbox">
-            <input type="checkbox"> Checkbox option
-          </label>
-        </form>
-          </section>
         </div>
       </div>
 
